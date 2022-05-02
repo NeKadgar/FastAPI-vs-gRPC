@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+// Hello Name
+service Greeter {
+  rpc SayHello (HelloRequest) returns (HelloReply) {}
+}
+
+message HelloRequest {
+  string name = 1;
+}
+
+message HelloReply {
+  string message = 1;
+}
+
+// Auth/Create User
+service UserService {
+  rpc AddUser(AddUserRequest) returns (AddUserResponse) {}
+  rpc AuthUser(AuthUserRequest) returns (AuthUserResponse) {}
+}
+
+message AddUserRequest {
+  string first_name = 1;
+  string last_name = 2;
+  int32 age = 3;
+}
+
+message AddUserResponse {
+  string token = 1;
+  int32 user_id = 2;
+}
+
+message AuthUserRequest {
+  string first_name = 1;
+  string last_name = 2;
+  int32 age = 3;
+}
+
+message AuthUserResponse {
+  string token = 1;
+  string server_time = 2;
+}
