@@ -18,7 +18,19 @@ def close(channel):
 
 
 def create_users(users):
-    pass
+    counter = 0
+    with grpc.insecure_channel('localhost:9999') as channel:
+        stub = services_pb2_grpc.UserServiceStub(channel)
+        for user in users:
+            fname, lname, age = user
+            response = stub.AddUser(services_pb2.AddUserRequest(
+                first_name=fname,
+                last_name=lname,
+                age=int(age)
+            ))
+            counter = counter + 1
+            if counter % 100 == 0:
+                print(f"token: {response.token}, id: {response.user_id}")
 
 
 def run():
@@ -45,4 +57,8 @@ def run():
 
 
 if __name__ == "__main__":
-    run()
+    # run()
+    with open("users.txt", "r") as file:
+        users = [user.split(":") for user in file.read().split("\n")]
+    # print(users)
+    create_users(users[:10])

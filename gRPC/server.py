@@ -5,7 +5,7 @@ from services import services_pb2_grpc, services_pb2
 import time
 from models import db, user
 
-MAX_WORKERS = 10
+MAX_WORKERS = 1
 db_session = next(db.get_session())
 
 
@@ -60,4 +60,5 @@ def serve():
 
 
 if __name__ == "__main__":
+    # db_session.rollback()
     serve()
