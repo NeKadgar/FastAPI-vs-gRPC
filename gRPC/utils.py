@@ -20,11 +20,16 @@ def migrate():
     user.User.__table__.create(db.engine)
 
 
+def drop_users():
+    user.User.__table__.drop(db.engine)
+
+
 if __name__ == "__main__":
     # db = next(db.get_session())
     # new_user = user.User(first_name="1", last_name="2", age=1)
     # db.add(new_user)
     # db.commit()
-    # migrate()
+    drop_users()
+    migrate()
     # create_users(10000)
     pass

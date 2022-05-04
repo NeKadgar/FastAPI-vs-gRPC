@@ -8,13 +8,13 @@ def get_users() -> list:
 
 
 if __name__ == "__main__":
-    COUNT = 10
+    COUNT = 50
     PROCESSES = {}
     users = get_users()
     USERS_PER_CLIENT = 10000 // COUNT
     for x in range(COUNT):
         # PROCESSES[x] = Process(target=client.run)
-        PROCESSES[x] = Process(target=client.create_users,
+        PROCESSES[x] = Process(target=client.auth_user,
                                args=(users[USERS_PER_CLIENT * x: USERS_PER_CLIENT * (x + 1)], ))
 
     for x in range(COUNT):

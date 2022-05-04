@@ -33,6 +33,22 @@ def create_users(users):
                 print(f"token: {response.token}, id: {response.user_id}")
 
 
+def auth_user(users):
+    counter = 0
+    with grpc.insecure_channel('localhost:9999') as channel:
+        stub = services_pb2_grpc.UserServiceStub(channel)
+        for user in users:
+            fname, lname, age = user
+            response = stub.AuthUser(services_pb2.AddUserRequest(
+                first_name=fname,
+                last_name=lname,
+                age=int(age)
+            ))
+            counter = counter + 1
+            if counter % 1000 == 0:
+                print(f"token: {response.token}, id: {response.server_time}")
+
+
 def run():
     pid = os.getpid()
     counter = 0
@@ -49,7 +65,7 @@ def run():
                         "%.4f : resp=%s : procid=%i"
                         % (time.time() - start, response.message, pid)
                     )
-                time.sleep(0.001)
+                # time.sleep(0.001)
             except KeyboardInterrupt:
                 print("KeyboardInterrupt")
                 channel.unsubscribe(close)
@@ -61,4 +77,5 @@ if __name__ == "__main__":
     with open("users.txt", "r") as file:
         users = [user.split(":") for user in file.read().split("\n")]
     # print(users)
-    create_users(users[:10])
+    # create_users(users)
+    auth_user(users)
