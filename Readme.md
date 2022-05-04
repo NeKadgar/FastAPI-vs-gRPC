@@ -8,7 +8,7 @@ $ python -m pip install grpcio-tools
 ```
 ## Performance
 
-Everything below dont make a lot of sence because sometimes CPU goes to 100%, sometimes only 60% and after few reruns
+Everything below (only gRPC) don't make a lot of sence because sometimes CPU goes to 100%, sometimes only 60% and after few reruns
 100%
 
 #### Hello \<Name>
@@ -49,7 +49,14 @@ Install the dependencies:
 $ pip install fastapi
 $ pip install "uvicorn[standard]"
 ```
+Usage:
+```bash
+$ uvicorn server:app --reload --log-level 'critical'
+```
 ## Performance
 
-
-
+|                | async client  |
+|----------------|---------------|
+| 1000 Hello     | 0.50-0.56 sec |
+| 100 Add user   | 0.17-0.34 sec |
+| 1000 Auth user | 2.18-2.60 sec |
