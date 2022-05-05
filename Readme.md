@@ -68,7 +68,7 @@ Make no sense
 |----------------|---------------|
 | 1000 Hello     | 1.35-1.60 sec |
 
-#Django
+# Django
 Make sense because ready made admin + a lot of user libraries for literally everything. Read performance sucks idk why 😔🥺 
 ## Performance
 |                | async client  |
