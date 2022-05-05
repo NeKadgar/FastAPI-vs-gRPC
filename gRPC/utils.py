@@ -30,6 +30,6 @@ if __name__ == "__main__":
     # db.add(new_user)
     # db.commit()
     drop_users()
-    migrate()
+    # migrate()
     # create_users(10000)
     pass

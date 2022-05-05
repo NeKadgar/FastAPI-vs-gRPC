@@ -60,3 +60,19 @@ $ uvicorn server:app --reload --log-level 'critical'
 | 1000 Hello     | 0.50-0.56 sec |
 | 100 Add user   | 0.17-0.34 sec |
 | 1000 Auth user | 2.18-2.60 sec |
+
+# Flask
+Make no sense
+## Performance
+|                | async client  |
+|----------------|---------------|
+| 1000 Hello     | 1.35-1.60 sec |
+
+#Django
+Make sense because ready made admin + a lot of user libraries for literally everything. Read performance sucks idk why 😔🥺 
+## Performance
+|                | async client  |
+|----------------|---------------|
+| 1000 Hello     | 0.95-1.16 sec |
+| 100 Add user   | 0.50-0.57 sec |
+| 1000 Auth user | 6.16-10 sec   |
